@@ -1,76 +1,166 @@
-<style>
-:root {
-  --sky: #6ecbf4;
-}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ナツノヒビ</title>
 
-body {
-  margin: 0;
-  background: #ffffff;
-  font-family: sans-serif;
-}
+  <style>
+    :root {
+      --sky: #6ecbf4;
+    }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* 最初の画面 */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: sans-serif;
+    }
 
-/* 🔥 動画（倍以上） */
-video {
-  width: 420px;
-  max-width: 90vw;
-  margin-bottom: 20px;
-}
+    body {
+      overflow-x: hidden;
+    }
 
-/* コピー */
-.copy {
-  color: var(--sky);
-  font-size: 18px;
-  letter-spacing: 2px;
-}
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-/* 空間（少し広げる） */
-.spacer {
-  height: 80vh;
-}
+    /* 最初の画面 */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-/* 🔥 縦ロゴ（主役） */
-.vertical {
-  width: 360px;
-  max-width: 80vw;
-  display: block;
-  margin: 0 auto 80px;
+    /* 上の動画 */
+    .hero video {
+      width: 420px;
+      max-width: 90vw;
+      display: block;
+      margin: 0 auto 20px;
+    }
 
-  opacity: 0;
-  transform: translateY(120px);
-  transition: all 1.2s ease;
-}
+    /* コピー */
+    .copy {
+      color: var(--sky);
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+      text-align: center;
+    }
 
-.vertical.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    /* 縦ロゴまでの余白 */
+    .spacer {
+      height: 110vh;
+    }
 
-/* coming */
-.coming {
-  color: var(--sky);
-  font-size: 26px;
-  margin-bottom: 60px;
-}
+    /* 縦ロゴ */
+    .vertical {
+      width: 520px;
+      max-width: 90vw;
+      display: block;
+      margin: 0 auto 100px;
 
-/* 🔥 下ロゴ */
-.bottom {
-  width: 280px;
-  max-width: 70vw;
-  margin-bottom: 80px;
-}
-</style>
+      opacity: 0;
+      transform: translateY(160px);
+      transition: opacity 2.4s ease, transform 2.4s ease;
+    }
+
+    .vertical.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Coming */
+    .coming {
+      color: var(--sky);
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      margin: 0 0 60px;
+      text-align: center;
+    }
+
+    /* 下の小ロゴ */
+    .bottom {
+      width: 280px;
+      max-width: 70vw;
+      display: block;
+      margin: 0 auto 80px;
+    }
+
+    @media (max-width: 768px) {
+      .hero video {
+        width: 300px;
+      }
+
+      .copy {
+        font-size: 15px;
+      }
+
+      .spacer {
+        height: 90vh;
+      }
+
+      .vertical {
+        width: 360px;
+        margin-bottom: 70px;
+      }
+
+      .coming {
+        font-size: 20px;
+        margin-bottom: 40px;
+      }
+
+      .bottom {
+        width: 200px;
+        margin-bottom: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <section class="hero">
+      <video autoplay muted loop playsinline>
+        <source src="bf.mp4" type="video/mp4">
+      </video>
+
+      <div class="copy">ひんやかワクワク、ひと夏の思い出</div>
+    </section>
+
+    <div class="spacer"></div>
+
+    <img src="logo-vertical.png" alt="ナツノヒビ" class="vertical">
+
+    <div class="coming">coming this summer</div>
+
+    <img src="logo-small.png" alt="ナツノヒビ ロゴ" class="bottom">
+
+  </div>
+
+  <script>
+    const el = document.querySelector('.vertical');
+
+    window.addEventListener('scroll', () => {
+      const rect = el.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight * 0.6) {
+        el.classList.add('show');
+      }
+    });
+  </script>
+
+</body>
+</html>
