@@ -16,13 +16,14 @@ body {
   font-family: sans-serif;
 }
 
+/* 全体 */
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* 上のセクション */
+/* 最初の画面 */
 .hero {
   height: 100vh;
   display: flex;
@@ -31,43 +32,55 @@ body {
   align-items: center;
 }
 
+/* 動画（サイズアップ） */
 video {
-  width: 140px;
-  margin-bottom: 10px;
+  width: 240px;
+  max-width: 70vw;
+  margin-bottom: 14px;
 }
 
+/* コピー */
 .copy {
   color: var(--sky);
-  font-size: 12px;
-  margin-bottom: 40px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
-/* 縦ロゴ */
+/* スクロール用の余白（ここが重要） */
+.spacer {
+  height: 70vh;
+}
+
+/* 縦ロゴ（最初は隠す） */
 .vertical {
-  width: 120px;
-  margin: 100px auto;
+  width: 200px;
+  max-width: 60vw;
   display: block;
+  margin: 0 auto 60px;
 
   opacity: 0;
-  transform: translateY(80px);
+  transform: translateY(100px);
   transition: all 1.2s ease;
 }
 
+/* 表示された状態 */
 .vertical.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* 下ロゴ */
-.bottom {
-  width: 120px;
-  margin: 80px auto 40px;
-}
-
+/* coming */
 .coming {
   color: var(--sky);
-  margin-top: 30px;
-  font-size: 16px;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+/* 下ロゴ */
+.bottom {
+  width: 160px;
+  max-width: 50vw;
+  margin-bottom: 60px;
 }
 </style>
 </head>
@@ -76,13 +89,16 @@ video {
 
 <div class="wrapper">
 
-  <!-- 上 -->
+  <!-- 最初の画面 -->
   <div class="hero">
     <video autoplay muted loop playsinline>
       <source src="bf.mp4" type="video/mp4">
     </video>
     <div class="copy">ひんやかワクワク、ひと夏の思い出</div>
   </div>
+
+  <!-- 空間（ここが演出の肝） -->
+  <div class="spacer"></div>
 
   <!-- 縦ロゴ -->
   <img src="logo-vertical.png" class="vertical">
@@ -98,7 +114,8 @@ const el = document.querySelector('.vertical');
 
 window.addEventListener('scroll', () => {
   const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight * 0.85) {
+
+  if (rect.top < window.innerHeight * 0.8) {
     el.classList.add('show');
   }
 });
