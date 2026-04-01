@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ナツノヒビ ～夏限定のかき氷屋さん</title>
+
   <style>
     :root {
       --sky: #6ecbf4;
@@ -25,9 +26,10 @@
       padding: 40px 20px;
     }
 
+    /* ① 動画を少し小さく */
     video {
-      width: 420px;
-      max-width: 70vw;
+      width: 300px;
+      max-width: 65vw;
       display: block;
       margin: 0 auto 20px;
     }
@@ -40,11 +42,21 @@
       margin-bottom: 120px;
     }
 
+    /* ② 縦ロゴ（最初は隠す） */
     .vertical {
       width: 360px;
       max-width: 85vw;
       display: block;
       margin: 0 auto 80px;
+
+      opacity: 0;
+      transform: translateY(80px);
+      transition: all 2.5s ease; /* ← ゆっくり */
+    }
+
+    .vertical.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .coming {
@@ -52,15 +64,9 @@
       font-size: 26px;
       margin: 0 0 50px;
     }
-
-    .bottom {
-      width: 220px;
-      max-width: 65vw;
-      display: block;
-      margin: 0 auto 80px;
-    }
   </style>
 </head>
+
 <body>
 
   <section class="hero">
@@ -71,10 +77,23 @@
     <div class="copy">ひんやかワクワク、ひと夏の思い出</div>
   </section>
 
+  <!-- 縦ロゴ -->
   <img src="logo-vertical.png" alt="ナツノヒビ" class="vertical">
 
   <div class="coming">coming this summer</div>
 
+  <!-- JS（ここが肝） -->
+  <script>
+    const el = document.querySelector('.vertical');
+
+    window.addEventListener('scroll', () => {
+      const rect = el.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight * 0.8) {
+        el.classList.add('show');
+      }
+    });
+  </script>
 
 </body>
 </html>
