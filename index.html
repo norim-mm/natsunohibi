@@ -15,6 +15,7 @@
       background: #ffffff;
       font-family: sans-serif;
       text-align: center;
+      overflow-x: hidden;
     }
 
     .hero {
@@ -26,7 +27,7 @@
       padding: 40px 20px;
     }
 
-    /* ① 動画を少し小さく */
+    /* 動画（少し控えめ） */
     video {
       width: 300px;
       max-width: 65vw;
@@ -39,30 +40,38 @@
       font-size: 18px;
       letter-spacing: 0.08em;
       line-height: 1.7;
-      margin-bottom: 120px;
+      margin-bottom: 140px;
     }
 
-    /* ② 縦ロゴ（最初は隠す） */
+    /* 縦ロゴ（フワッと） */
     .vertical {
-      width: 360px;
+      width: 380px;
       max-width: 85vw;
       display: block;
-      margin: 0 auto 80px;
+      margin: 0 auto 100px;
 
       opacity: 0;
-      transform: translateY(80px);
-      transition: all 2.5s ease; /* ← ゆっくり */
+      transform: translateY(140px) scale(0.96);
+      transition:
+        opacity 3s ease-out,
+        transform 3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .vertical.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .coming {
       color: var(--sky);
-      font-size: 26px;
-      margin: 0 0 50px;
+      font-size: 24px;
+      margin-bottom: 60px;
+    }
+
+    .bottom {
+      width: 240px;
+      max-width: 70vw;
+      margin-bottom: 80px;
     }
   </style>
 </head>
@@ -82,14 +91,16 @@
 
   <div class="coming">coming this summer</div>
 
-  <!-- JS（ここが肝） -->
+  <img src="logo-small.png" alt="ナツノヒビ ロゴ" class="bottom">
+
   <script>
     const el = document.querySelector('.vertical');
 
     window.addEventListener('scroll', () => {
       const rect = el.getBoundingClientRect();
 
-      if (rect.top < window.innerHeight * 0.8) {
+      // 少し遅めに出る設定（ここが気持ちよさ）
+      if (rect.top < window.innerHeight * 0.7) {
         el.classList.add('show');
       }
     });
