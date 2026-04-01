@@ -1,37 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ナツノヒビ</title>
-
   <style>
     :root {
       --sky: #6ecbf4;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
       background: #ffffff;
       font-family: sans-serif;
+      text-align: center;
     }
 
-    body {
-      overflow-x: hidden;
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* 最初の画面 */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -39,128 +23,59 @@
       justify-content: center;
       align-items: center;
       padding: 40px 20px;
-      text-align: center;
     }
 
-    /* 上の動画 */
-    .hero video {
+    video {
       width: 420px;
       max-width: 90vw;
       display: block;
       margin: 0 auto 20px;
     }
 
-    /* コピー */
     .copy {
       color: var(--sky);
       font-size: 18px;
       letter-spacing: 0.08em;
       line-height: 1.7;
-      text-align: center;
+      margin-bottom: 120px;
     }
 
-    /* 縦ロゴまでの余白 */
-    .spacer {
-      height: 110vh;
-    }
-
-    /* 縦ロゴ */
     .vertical {
-      width: 520px;
-      max-width: 90vw;
-      display: block;
-      margin: 0 auto 100px;
-
-      opacity: 0;
-      transform: translateY(160px);
-      transition: opacity 2.4s ease, transform 2.4s ease;
-    }
-
-    .vertical.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Coming */
-    .coming {
-      color: var(--sky);
-      font-size: 26px;
-      letter-spacing: 0.04em;
-      margin: 0 0 60px;
-      text-align: center;
-    }
-
-    /* 下の小ロゴ */
-    .bottom {
-      width: 280px;
-      max-width: 70vw;
+      width: 360px;
+      max-width: 85vw;
       display: block;
       margin: 0 auto 80px;
     }
 
-    @media (max-width: 768px) {
-      .hero video {
-        width: 300px;
-      }
+    .coming {
+      color: var(--sky);
+      font-size: 26px;
+      margin: 0 0 50px;
+    }
 
-      .copy {
-        font-size: 15px;
-      }
-
-      .spacer {
-        height: 90vh;
-      }
-
-      .vertical {
-        width: 360px;
-        margin-bottom: 70px;
-      }
-
-      .coming {
-        font-size: 20px;
-        margin-bottom: 40px;
-      }
-
-      .bottom {
-        width: 200px;
-        margin-bottom: 60px;
-      }
+    .bottom {
+      width: 220px;
+      max-width: 65vw;
+      display: block;
+      margin: 0 auto 80px;
     }
   </style>
 </head>
 <body>
 
-  <div class="wrapper">
+  <section class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="bf.MP4" type="video/mp4">
+    </video>
 
-    <section class="hero">
-      <video autoplay muted loop playsinline>
-        <source src="bf.mp4" type="video/mp4">
-      </video>
+    <div class="copy">ひんやかワクワク、ひと夏の思い出</div>
+  </section>
 
-      <div class="copy">ひんやかワクワク、ひと夏の思い出</div>
-    </section>
+  <img src="logo-vertical.png" alt="ナツノヒビ" class="vertical">
 
-    <div class="spacer"></div>
+  <div class="coming">coming this summer</div>
 
-    <img src="logo-vertical.png" alt="ナツノヒビ" class="vertical">
-
-    <div class="coming">coming this summer</div>
-
-    <img src="logo-small.png" alt="ナツノヒビ ロゴ" class="bottom">
-
-  </div>
-
-  <script>
-    const el = document.querySelector('.vertical');
-
-    window.addEventListener('scroll', () => {
-      const rect = el.getBoundingClientRect();
-
-      if (rect.top < window.innerHeight * 0.6) {
-        el.classList.add('show');
-      }
-    });
-  </script>
+  <img src="logo-small.png" alt="ナツノヒビ ロゴ" class="bottom">
 
 </body>
 </html>
